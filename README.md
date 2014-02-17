@@ -42,7 +42,7 @@ Or install it yourself as:
 
 2.命令行方式使用
   
-  wpsword  -file "C:\\1.wps" -cmd log -msg "here is my first msg from commond line" 
+  wpsword  -v -f "D:\\1.wps"  -m "here is my first msg from commond line" 
 
 ## Contributing
 
