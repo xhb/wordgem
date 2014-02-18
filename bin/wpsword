@@ -7,7 +7,7 @@ option = {}
 option_parser = OptionParser.new do | opts |
   
   opts.banner = %q/
-      help msg: 
+  help msg: 
       example:
         wpsword -s on -v 
         wpsword -g -name "xhb" -file "C:\\1.wps"
@@ -21,41 +21,21 @@ option_parser = OptionParser.new do | opts |
     option[:visitable] = true
   end
 
-  option[:generate] = false
-  opts.on('-g', '--generate', 'generate a wps document') do
-    option[:generate] = true
-  end
-
   opts.on('-f', '--file', 'specify the file name with full path name') do | value |
     option[:filename] = value
-  end
-  
-  opts.on('-n', '--name', 'specify a doc name ') do | value |
-    option[:docname] = value
-  end
-
-  opts.on('-c', '--cmd', "specify the wps commond: write, read, delete") do | value |
-    option[:cmd] = value
   end
   
   opts.on('-m', '--msg', "tell the wpsword write a msg") do | value |
     option[:msg] = value
   end
 
-  opts.on('-s', '--switch', "a switch to control a wps main process") do | value |
-    option[:switch] = value
-  end
 
 end.parse!
 
-word = WPS::Word.new(option[:visitable]) if option[:switch] == "on"
-   
-word.givedoc("#{option[:docname]}", "#{option[:filename]}") if option[:generate]
-
-word.msg("#{option[:docname]}", "#{option[:msg]}") if optione[:cmd] == "write"
-
-word.closedoc("#{option[:docname]}") if optione[:cmd] == "close"
-  
-word.close if option[:switch] == "off"
+word = WPS::Word.new(option[:visitable]) 
+word.givedoc("test", "#{option[:filename]}")
+word.msg("test", "#{option[:msg]}") 
+word.closedoc("test")
+word.close
 
 
