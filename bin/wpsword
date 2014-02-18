@@ -7,13 +7,11 @@ option = {}
 option_parser = OptionParser.new do | opts |
   
   opts.banner = %q/
-  help msg: 
-      example:
-        wpsword -s on -v 
-        wpsword -g -name "xhb" -file "C:\\1.wps"
-        wpsword -c write -name "xhb" -msg "hello word"
-        wpsword -c close -name "xhb"
-        wpsword -s off
+  
+  Help msg: 
+
+  Example:
+       wpsword -v -f "D:\\yy.wps" -m "1234567890"
   /
 
   option[:visitable] = false
@@ -32,10 +30,12 @@ option_parser = OptionParser.new do | opts |
 
 end.parse!
 
+puts option.inspect
 word = WPS::Word.new(option[:visitable]) 
 word.givedoc("test", "#{option[:filename]}")
 word.msg("test", "#{option[:msg]}") 
 word.closedoc("test")
+sleep 1
 word.close
 
 
