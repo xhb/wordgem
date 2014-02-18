@@ -1,21 +1,20 @@
-#!/usr/bin/env ruby
-require 'word_handler'
+require "word_handler"
 require 'optparse'
 
 options = {}
 
 option_parser = OptionParser.new do | opts |
   
-  opts.banner =<< TEXT
-  help msg: 
-  example:
-    wpsword -s on -v 
-    wpsword -g -name "xhb" -file "C:\\1.wps"
-    wpsword -c write -name "xhb" -msg "hello word"
-    wpsword -c close -name "xhb"
-    wpsword -s off
+  opts.banner = <<TEXT
+      help msg: 
+      example:
+        wpsword -s on -v 
+        wpsword -g -name "xhb" -file "C:\\1.wps"
+        wpsword -c write -name "xhb" -msg "hello word"
+        wpsword -c close -name "xhb"
+        wpsword -s off
   TEXT
-  
+
   option[:visitable] = false
   opts.on('-v', '--visitable', 'set the word visitable') do 
     option[:visitable] = true
