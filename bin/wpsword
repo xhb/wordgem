@@ -1,0 +1,55 @@
+#!/usr/bin/env ruby
+require 'word_handler'
+require 'optparse'
+
+options = {}
+
+option_parser = OptionParser.new do | opts |
+  
+  opts.banner = " help msg: "
+  
+  option[:visitable] = false
+  opts.on('-v', '--visitable', 'set the word visitable') do 
+    option[:visitable] = true
+  end
+
+  option[:generate] = false
+  opts.on('-g', '--generate', 'generate a wps document') do
+    option[:generate] = true
+  end
+
+  opts.on('-f', '--file', 'specify the file name with full path name') do 
+    option[:filename] = value
+  end
+  
+  opts.on('-c', '--cmd', "specify the wps commond: write, read, delete") do
+    option[:cmd] = value
+  end
+  
+  opts.on('-m', '--msg', "tell the wpsword write a msg") do 
+    option[:msg] = value
+  end
+
+end.parse!
+
+word = WPS::Word.new()
+  
+word.givedoc("xhb_doc", "D:\\xhb_doc")
+word.givedoc("cry_doc", "D:\\cyr_doc")
+  
+word.msg("xhb_doc", "hello, here is my msg 1")
+  word.msg("cry_doc", "hello, here is my msg 111")
+  word.msg("xhb_doc", "hello, here is my msg 2")
+  word.msg("cry_doc", "hello, here is my msg 222")
+
+  word.closedoc("xhb_doc")
+  word.closedoc("cry_doc")
+  
+  word.close
+
+
+ wpsword  -f "C:\\1.wps" -c log -m "here is my first msg from commond line" 
+
+ wpsword -g -name "xhb" -file "C:\\1.wps"
+ wpsword -c write -name "xhb" -msg "hello word"
+ 

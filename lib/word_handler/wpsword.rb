@@ -1,19 +1,15 @@
 
-require 'win32ole'
-require 'singleton'  
+require 'win32ole' 
 
-module WordHandler
+module WPS
 
   class Word
-    
-    include Singleton 
-   
-    attr_accessor :exe
+
     @@doclist = {}
 
-    def initialize
+    def initialize(visible = 'false')
       @exe = WIN32OLE.new('wps.application')
-      @exe.visible = false
+      @exe.visible = visible
     end
     
 =begin
