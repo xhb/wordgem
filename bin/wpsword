@@ -1,7 +1,8 @@
-require "word_handler"
-require 'optparse'
 
-options = {}
+require "word_handler"
+require "optparse"
+
+option = {}
 
 option_parser = OptionParser.new do | opts |
   
