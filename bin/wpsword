@@ -30,12 +30,10 @@ option_parser = OptionParser.new do | opts |
 
 end.parse!
 
-puts option.inspect
 word = WPS::Word.new(option[:visitable]) 
 word.givedoc("test", "#{option[:filename]}")
 word.msg("test", "#{option[:msg]}") 
 word.closedoc("test")
-sleep 1
 word.close
 
 
