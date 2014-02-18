@@ -19,11 +19,11 @@ option_parser = OptionParser.new do | opts |
     option[:visitable] = true
   end
 
-  opts.on('-f', '--file', 'specify the file name with full path name') do | value |
+  opts.on('-f filename', '--file filename', 'specify the file name with full path name') do | value |
     option[:filename] = value
   end
   
-  opts.on('-m', '--msg', "tell the wpsword write a msg") do | value |
+  opts.on('-m msg', '--msg msg', "tell the wpsword write a msg") do | value |
     option[:msg] = value
   end
 
@@ -35,5 +35,4 @@ word.givedoc("test", "#{option[:filename]}")
 word.msg("test", "#{option[:msg]}") 
 word.closedoc("test")
 word.close
-
 
