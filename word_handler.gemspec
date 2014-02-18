@@ -6,8 +6,8 @@ require 'word_handler/version'
 Gem::Specification.new do |spec|
   spec.name          = "word_handler"
   spec.version       = WordHandler::VERSION
-  spec.authors       = ["TODO: Write your name"]
-  spec.email         = ["TODO: Write your email address"]
+  spec.authors       = ["xhb"]
+  spec.email         = ["progamstart@163.com"]
   spec.summary       = %q{provide a WordHandler for dtp vm test}
   spec.description   = %q{provide a WordHandler for dtp vm test}
   spec.homepage      = ""

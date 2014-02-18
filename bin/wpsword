@@ -6,7 +6,15 @@ options = {}
 
 option_parser = OptionParser.new do | opts |
   
-  opts.banner = " help msg: "
+  opts.banner =<< TEXT
+  help msg: 
+  example:
+    wpsword -s on -v 
+    wpsword -g -name "xhb" -file "C:\\1.wps"
+    wpsword -c write -name "xhb" -msg "hello word"
+    wpsword -c close -name "xhb"
+    wpsword -s off
+  TEXT
   
   option[:visitable] = false
   opts.on('-v', '--visitable', 'set the word visitable') do 
@@ -22,6 +30,10 @@ option_parser = OptionParser.new do | opts |
     option[:filename] = value
   end
   
+  opts.on('-n', '--name', 'specify a doc name ') do 
+    option[:docname] = value
+  end
+
   opts.on('-c', '--cmd', "specify the wps commond: write, read, delete") do
     option[:cmd] = value
   end
@@ -30,26 +42,20 @@ option_parser = OptionParser.new do | opts |
     option[:msg] = value
   end
 
+  opts.on('-s', '--switch', "a switch to control a wps main process") do 
+    option[:switch] = value
+  end
+
 end.parse!
 
-word = WPS::Word.new()
+word = WPS::Word.new(option[:visitable]) if option[:switch] == "on"
+   
+word.givedoc("#{option[:docname]}", "#{option[:filename]}") if option[:generate]
+
+word.msg("#{option[:docname]}", "#{option[:msg]}") if optione[:cmd] == "write"
+
+word.closedoc("#{option[:docname]}") if optione[:cmd] == "close"
   
-word.givedoc("xhb_doc", "D:\\xhb_doc")
-word.givedoc("cry_doc", "D:\\cyr_doc")
-  
-word.msg("xhb_doc", "hello, here is my msg 1")
-  word.msg("cry_doc", "hello, here is my msg 111")
-  word.msg("xhb_doc", "hello, here is my msg 2")
-  word.msg("cry_doc", "hello, here is my msg 222")
-
-  word.closedoc("xhb_doc")
-  word.closedoc("cry_doc")
-  
-  word.close
+word.close if option[:switch] == "off"
 
 
- wpsword  -f "C:\\1.wps" -c log -m "here is my first msg from commond line" 
-
- wpsword -g -name "xhb" -file "C:\\1.wps"
- wpsword -c write -name "xhb" -msg "hello word"
- 
