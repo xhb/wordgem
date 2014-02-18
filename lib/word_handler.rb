@@ -4,7 +4,7 @@ require 'singleton'
 
 module WordHandler
   # Your code goes here...
-  class WordExe
+  class Word
     
     include Singleton 
    
@@ -15,27 +15,36 @@ module WordHandler
       @exe.visible = false
     end
     
+    def close
+      @exe.quit
+    end
+    
+    def givedoc(fpath = nil)
+      fpath.nil? ?  @exe.Documents.Add() : @exe.Documents.Open("#{fpath}") ;
+      
+    end
+
   end
+
 
   class DocWriter
 
-    def initialize(wordexe, name, fname)
-      @wordexe  = wordexe
-      #@doc      = doc
-      @name     = name
-      @filename = fname
+    def initialize(doc, name)
+      @doc  = doc
+      @name = name
+  
     end
     
     def msg(message)
 
-      doc = @wordexe.Documents.Open("#{@filename}")
+    
 	  # 将当前文档设为活动状态
-	  doc.Activate 
-	  doc.Content.Font.Size = 11
-	  doc.Content.Text = "#{Time.now}: #{@name}: #{message}"
+	  @doc.Activate 
+	  @doc.Content.Font.Size = 11
+	  @doc.Content.Text = "#{Time.now}: #{@name}: #{message}"
 
-	  doc.Save
-	  doc.close
+	  @doc.Save
+	  @doc.close
       
     end
 
