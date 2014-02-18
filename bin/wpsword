@@ -26,23 +26,23 @@ option_parser = OptionParser.new do | opts |
     option[:generate] = true
   end
 
-  opts.on('-f', '--file', 'specify the file name with full path name') do 
+  opts.on('-f', '--file', 'specify the file name with full path name') do | value |
     option[:filename] = value
   end
   
-  opts.on('-n', '--name', 'specify a doc name ') do 
+  opts.on('-n', '--name', 'specify a doc name ') do | value |
     option[:docname] = value
   end
 
-  opts.on('-c', '--cmd', "specify the wps commond: write, read, delete") do
+  opts.on('-c', '--cmd', "specify the wps commond: write, read, delete") do | value |
     option[:cmd] = value
   end
   
-  opts.on('-m', '--msg', "tell the wpsword write a msg") do 
+  opts.on('-m', '--msg', "tell the wpsword write a msg") do | value |
     option[:msg] = value
   end
 
-  opts.on('-s', '--switch', "a switch to control a wps main process") do 
+  opts.on('-s', '--switch', "a switch to control a wps main process") do | value |
     option[:switch] = value
   end
 
