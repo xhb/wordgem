@@ -5,7 +5,7 @@ options = {}
 
 option_parser = OptionParser.new do | opts |
   
-  opts.banner = <<TEXT
+  opts.banner = %q/
       help msg: 
       example:
         wpsword -s on -v 
@@ -13,7 +13,7 @@ option_parser = OptionParser.new do | opts |
         wpsword -c write -name "xhb" -msg "hello word"
         wpsword -c close -name "xhb"
         wpsword -s off
-  TEXT
+  /
 
   option[:visitable] = false
   opts.on('-v', '--visitable', 'set the word visitable') do 
